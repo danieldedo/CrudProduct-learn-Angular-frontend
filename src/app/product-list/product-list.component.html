@@ -1,0 +1,38 @@
+
+
+
+<div class="container mt-5">
+  <h2>Liste des produits</h2>
+
+  <div class="row">
+    <a class="offset-10 col-2 btn btn-primary" routerLinkActive="active" ariaCurrentWhenActive="page" routerLink="/products/create" >+ Creer un produit</a>
+  </div>
+  <table class="table table-striped text-center">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Quantité</th>
+        <th scope="col">Fournisseur</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products.slice().reverse(); let i = index" >
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }} Fr</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.provider }}</td>
+        <td>
+          <button (click)="editProduct(product.id)" class="btn btn-info mx-3">Modifier</button>
+          <button (click)="deleteProduct(product.id)" class="btn btn-danger">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<router-outlet />

@@ -1,0 +1,140 @@
+<!--
+
+<div class="container mt-5">
+  <h2 class="mb-4">Formulaire d'enregistrement de produit</h2>
+  <form (ngSubmit)="createProduct()" class="row">
+    <div class="form-group col-md-6">
+      <label for="productName">Nom du produit :</label>
+      <input type="text" [(ngModel)]="product.name" name="name" class="form-control" id="productName" placeholder="Entrez le nom du produit">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="productCategory">Catégorie :</label>
+      <select [(ngModel)]="product.categorie" name="categorie" class="form-control" id="productCategory">
+        <option value="">Sélectionnez une catégorie</option>
+        <option value="Électronique">Électronique</option>
+        <option value="Vêtements">Vêtements</option>
+        <option value="Alimentation">Alimentation</option>
+        <option value="Maison et Jardin">Maison et Jardin</option>
+        <option value="Sport et Loisirs">Sport et Loisirs</option>
+      </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="productPrice">Prix :</label>
+      <input type="number" [(ngModel)]="product.price" name="price" class="form-control" id="productPrice" placeholder="Entrez le prix du produit">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="productQuantity">Quantité disponible :</label>
+      <input type="number" [(ngModel)]="product.quantite" name="quantite" class="form-control" id="productQuantity" placeholder="Entrez la quantité disponible">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="productSupplier">Nom du Fournisseur :</label>
+      <input type="text" [(ngModel)]="product.fournisseur" name="fournisseur" class="form-control" id="productSupplier" placeholder="Entrez le nom du fournisseur">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="productDate">Date d'ajout :</label>
+      <input type="date" disabled [value]="product.date | date:'medium'" class="form-control" id="productDate">
+    </div>
+    <div class="form-group col-md-12">
+      <label for="productDescription">Description :</label>
+      <textarea class="form-control" [(ngModel)]="product.description" name="description" id="productDescription" rows="3" placeholder="Entrez la description du produit"></textarea>
+    </div>
+    <div class="form-group text-center">
+      <button type="submit" class="btn btn-primary m-4">Enregistrer</button>
+      <button type="reset" class="btn btn-secondary" onclick="resetForm()">Annuler</button>
+    </div>
+  </form>
+</div> -->
+
+  <div class="container mt-5">
+    
+    <div *ngIf="successMessage" class="alert alert-success" role="alert">
+      {{ successMessage }}
+    </div>
+    <div class="card">
+      <div class="-header text-white bg-info p-3">
+        Enregistrer un produit
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="createProduct(productForm)" #productForm="ngForm">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="">Nom du produit</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nom du produit"
+                name="name" required
+                [(ngModel)]="product.name"
+                #productNameVar="ngModel"
+                [ngClass]=" { 'is-invalid': productNameVar.touched && !productNameVar.valid }">
+                <div class="invalid-feedback">
+                  <span *ngIf="productNameVar.errors">
+                      Entrez votre nom du produit
+                  </span>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="">Prix du produit</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Prix du produit"
+                name="price" required
+                [(ngModel)]="product.price"
+                #productPriceVar="ngModel"
+                [ngClass]=" { 'is-invalid': productPriceVar.touched && !productPriceVar.valid }">
+
+                <div class="invalid-feedback">
+                  <span *ngIf="productPriceVar.errors">
+                      Entrez le prix du poduit
+                  </span>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="">Quantité du produit</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Quantité du produit"
+                name="quantity" required
+                [(ngModel)]="product.quantity"
+                #productQuantityVar="ngModel"
+                [ngClass]=" { 'is-invalid': productQuantityVar.touched && !productQuantityVar.valid }">
+
+                <div class="invalid-feedback">
+                  <span *ngIf="productQuantityVar.errors">
+                      Entrez le Quantité du poduit
+                  </span>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="">Nom du fournisseur</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nom du fournisseur"
+                name="provider" required
+                [(ngModel)]="product.provider"
+                #productProviderVar="ngModel"
+                [ngClass]=" { 'is-invalid': productProviderVar.touched && !productProviderVar.valid }">
+
+                <div class="invalid-feedback">
+                  <span *ngIf="productProviderVar.errors">
+                      Entrez le Nom du fournisseur                  
+                    </span>
+                </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <button class="btn btn-info" type="submit">
+                Enregistrer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
